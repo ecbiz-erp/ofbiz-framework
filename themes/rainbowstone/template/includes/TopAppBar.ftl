@@ -80,7 +80,6 @@ under the License.
                                 </#if>
                                 <a href="${thisURL}${StringUtil.wrapString(externalKeyParam)}"<#if uiLabelMap?exists> title="${uiLabelMap[display.description]}">${uiLabelMap[display.title]}<#else> title="${display.description}">${display.title}</#if></a>
                                 <#if selected>
-                                    <div id="color-add"></div>
                                 </div>
                                 </#if>
                             </li>
@@ -119,7 +118,6 @@ under the License.
                             </#if>
                             <a href="${thisURL}${StringUtil.wrapString(externalKeyParam)}"<#if uiLabelMap?exists> title="${uiLabelMap[display.description]}">${uiLabelMap[display.title]}<#else> title="${display.description}">${display.title}</#if></a>
                             <#if selected>
-                                <div id="color-add"></div>
                             </div>
                             </#if>
                         </li>
@@ -229,7 +227,6 @@ under the License.
             <li class="app-btn selected">
                 <div id="app-selected">
                     <a class="more-app-a" href="${thisURL}${StringUtil.wrapString(externalKeyParam)}"<#if uiLabelMap??> title="${uiLabelMap[currentMoreApp.description]}">${uiLabelMap[currentMoreApp.title]}<#else> title="${currentMoreApp.description}">${currentMoreApp.title}</#if></a>
-                    <div id="color-add"></div>
                 </div>
             </li>
         </ul>

@@ -22,7 +22,7 @@
 @color-font-success: #3c763d;
 @color-border-success: #d6e9c6;
 
-@app-bar-height: 60px;
+@app-bar-height: 55px;
 @sub-app-bar-height: 40px;
 @footer-height: 20px;
 @home-btn-width: 47px;
@@ -500,18 +500,20 @@ li.line-odd {
   font-family: quicksandregular,sans-serif;
   background-color: @dark-color-theme;
   z-index: 5;
-  height: @app-bar-height;
+  height: 60px;
 }
 #main-nav-bar-left {
-  position: relative;
+  position: absolute;
   display: flex;
   align-items: center;
+  height: @app-bar-height;
+  bottom: 0px;
 }
 #main-nav-bar-right {
-  position: relative;
+  position: absolute;
   display: flex;
   align-items: center;
-  padding-right: 15px;
+  right: 15px;
 }
 
 .app-btn{
@@ -520,8 +522,6 @@ li.line-odd {
   display: flex;
   align-items: center;
   flex-direction: row;
-  margin-right: 2px;
-  margin-left: 2px;
   a {
     padding:10px;
     color: @font-color-for-dark;
@@ -534,15 +534,14 @@ li.line-odd {
 }
 
 .app-btn:hover{
-  position: relative;
-  top: -6px;
+  display: flex;
+  align-items: center;
   background-color: @main-color-theme;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  box-shadow: 1px 1px 12px @shadow-color;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  // border-bottom-right-radius: 5px;
+  box-shadow: 0px -2px 1px 1px @shadow-color;
   a {
-    position: relative;
-    top: 6px;
     color : @font-color-for-main;
   }
 }
@@ -558,18 +557,17 @@ li.line-odd {
 #app-selected {
   position: relative;
   display: flex;
+  height: inherit;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: @main-color-theme;
-  box-shadow: 1px -2px 12px @shadow-color;
   z-index: 0;
   opacity: .99;
-  border-top-left-radius : 8px ;
-  border-top-right-radius : 8px ;
+  border-top-left-radius : 4px ;
+  border-top-right-radius : 4px ;
   a {
     position: relative;
-    top: 3px;
     color: @font-color-for-main;
   }
 }
@@ -590,7 +588,7 @@ li.line-odd {
   box-shadow: 2px 2px 5px @shadow-color;
 }
 #color-add {
-  width: 150px;
+  width: 100px;
   background-color: @main-color-theme;
   height: @color-line-height;
   z-index: 20;
@@ -605,7 +603,7 @@ li.line-odd {
   justify-content: center;
   font-weight: bold;
   font-size: 1.4em !important;
-  width: 200px;
+  width: 40px;
   height: @app-bar-height;
   color: @font-color-for-dark;
 }
@@ -617,13 +615,14 @@ li.line-odd {
   display: block;
 }
 #more-app.selected {
-  background-color: @main-color-theme;
+  // background-color: @main-color-theme;
 }
 
 #more-app-list {
   display: none;
   position: absolute;
   top: @app-bar-height;
+  width: 100px;
   left: -20px;
   background-color: @dark-color-theme;
   z-index: 10;
@@ -670,6 +669,7 @@ li.line-odd {
 
 #app-bar-list {
   display: flex;
+  height: @app-bar-height;
 }
 
 #user-details {
@@ -765,7 +765,7 @@ a.user-pref-btn {
 }
 
 .appbar-btn-img {
-  height: @app-bar-height - 40px;
+  height: @app-bar-height - 35px;
 }
 
 #help-btn {
@@ -777,6 +777,7 @@ a.user-pref-btn {
 
 #app-navigation {
   height: @sub-app-bar-height;
+  border-right: solid 1px @black;
   border-bottom: solid 1px @black;
   width: 100%;
   min-width: @min-container-width;
@@ -790,7 +791,7 @@ a.user-pref-btn {
     flex-grow: 1;
   }
   ul li ul li {
-    border-left: solid 1px @black;
+    border-left: thick 1px @black;
     height: @sub-app-bar-height;
     display: flex;
     align-items: center;
@@ -800,7 +801,7 @@ a.user-pref-btn {
     padding-left: 6px;
     padding-right: 6px;
     font-family: "quicksandregular", Arial, "Lucida Grande", sans-serif;
-    border-bottom: solid 1px @black;
+    border-bottom: thick 1px @black;
     font-size: 12px;
     @media screen and (max-width: 1500px) {
       font-size: 10px;
@@ -823,7 +824,7 @@ a.user-pref-btn {
 }
 
 #app-navigation ul li ul li:last-child {
-  border-right: solid 1px @black;
+  border-right: thick 1px @black;
 }
 
 #app-navigation ul li ul li:hover {
