@@ -861,6 +861,16 @@ public final class MacroFormRenderer implements FormStringRenderer {
             }
         }
         String tabindex = modelFormField.getTabindex();
+
+        List<String> currentValueList = null;
+        if (UtilValidate.isNotEmpty(currentValue)) {
+            if (currentValue.startsWith("[")) {
+                currentValueList = StringUtil.toList(currentValue);
+            } else {
+                currentValueList = UtilMisc.toList(currentValue);
+            }
+        }
+
         List<ModelFormField.OptionValue> allOptionValues = checkField.getAllOptionValues(context, WidgetWorker.getDelegator(context));
         items.append("[");
         for (ModelFormField.OptionValue optionValue : allOptionValues) {
@@ -870,6 +880,9 @@ public final class MacroFormRenderer implements FormStringRenderer {
             items.append("{'value':'");
             items.append(optionValue.getKey());
             items.append("', 'description':'" + encode(optionValue.getDescription(), modelFormField, context));
+            if (UtilValidate.isNotEmpty(currentValueList) && currentValueList.contains(optionValue.getKey())) {
+                items.append("', 'checked':'" + Boolean.TRUE);
+            }
             items.append("'}");
         }
         items.append("]");
@@ -886,7 +899,7 @@ public final class MacroFormRenderer implements FormStringRenderer {
         sr.append("\" conditionGroup=\"");
         sr.append(conditionGroup);
         sr.append("\" allChecked=");
-        sr.append((allChecked != null ? Boolean.toString(allChecked) : "\"\""));
+        sr.append((allChecked != null && currentValueList == null ? Boolean.toString(allChecked) : "\"\""));
         sr.append(" currentValue=\"");
         sr.append(currentValue);
         sr.append("\" name=\"");
@@ -2902,7 +2915,7 @@ public final class MacroFormRenderer implements FormStringRenderer {
         UtilCodec.SimpleEncoder simpleEncoder = null;
         String encodedDescription = null;
         if (description.equals(StringEscapeUtils.unescapeEcmaScript(StringEscapeUtils.unescapeHtml4(description)))) {
-            simpleEncoder = (UtilCodec.SimpleEncoder) context.get("simpleEncoder");
+            simpleEncoder = internalEncoder;
         } else {
             simpleEncoder = UtilCodec.getEncoder("string");
         }
